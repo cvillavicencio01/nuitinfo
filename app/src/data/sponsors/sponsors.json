@@ -37,12 +37,6 @@
                     "logo": "/src/style/assets/sponsors/cremi.png",
                     "description": "Centre de Ressources pour l'Enseignement des Mathématiques et de l'Informatique",
                     "website": "http://www.emi.u-bordeaux.fr"
-                },
-                {
-                    "name": "FSDIE",
-                    "logo": "/src/style/assets/sponsors/fsdie.png",
-                    "description": "Fonds de Solidarité et de Développement des Initiatives Étudiantes",
-                    "website": "http://www.u-bordeaux.fr/Campus/Vie-associative/Projets-etudiants-FSDIE"
                 }
             ]
         },
@@ -54,12 +48,6 @@
                     "logo": "/src/style/assets/sponsors/onepointwhite.png",
                     "description": "En moins de 15 ans, onepoint est devenu l’un des acteurs majeurs de la transformation numérique, qui compte 1800 collaborateurs.",
                     "website": "https://www.groupeonepoint.com/emploi-carriere/offres-demplois/"
-                },
-                {
-                    "name": "OVH",
-                    "logo": "/src/style/assets/sponsors/ovh.png",
-                    "description": "Leader européen de l'hébergement web et du cloud.",
-                    "website": "https://ovh.com/fr"
                 }
             ]
         }

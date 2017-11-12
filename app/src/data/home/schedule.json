@@ -2,8 +2,8 @@
     "title": "Planning provisoire de la Nuit",
     "days": [
         {
-            "title": "Vendredi 25 Novembre",
-            "date": "2016-11-27",
+            "title": "Vendredi 01 Décembre",
+            "date": "2017-12-01",
             "events": [
                 {
                     "hour": "23:59",
@@ -18,8 +18,8 @@
             ]
         },
         {
-            "title": "Lundi 28 Novembre",
-            "date": "2016-11-30",
+            "title": "Mardi 5 Décembre",
+            "date": "2017-12-05",
             "events": [
                 {
                     "hour": "17:00",
@@ -29,13 +29,13 @@
             ]
         },
         {
-            "title": "Jeudi 1er Décembre",
-            "date": "2016-12-01",
+            "title": "Jeudi 7 Décembre",
+            "date": "2017-12-07",
             "events": [
                 {
                     "hour": "16:00",
                     "TZD": "+01:00",
-                    "content": "<b>Visioconférence</b> (Amphi Poincaré, <a href=\"https://www.google.fr/maps/@44.8070482,-0.5988415,18z\">bâtiment A22</a>)"
+                    "content": "<b>Visioconférence</b> (A22/Amphithéâtre Rosalind FRANKLIN, <a href=\"https://www.google.fr/maps/@44.8070482,-0.5988415,18z\">bâtiment A22</a>)"
                 },
                 {
                     "hour": "16:30",
@@ -65,8 +65,8 @@
             ]
         },
         {
-            "title": "Vendredi 2 Décembre",
-            "date": "2016-12-02",
+            "title": "Vendredi 8 Décembre",
+            "date": "2017-12-08",
             "events": [
                 {
                     "hour": "07:00",
@@ -76,7 +76,7 @@
                 {
                     "hour": "07:45",
                     "TZD": "+01:00",
-                    "content": "<b>Rangement</b> des salles <span class=\"integer\">005</span>, <span class=\"integer\">007</span>, <span class=\"integer\">005</span>, <span class=\"integer\">101</span>, <span class=\"integer\">102</span>, <span class=\"integer\">103</span>, <span class=\"integer\">201</span>  et <span class=\"integer\">005</span>"
+                    "content": "<b>Rangement</b> des salles</span>"
                 },
                 {
                     "hour": "07:50",
@@ -86,7 +86,7 @@
                 {
                     "hour": "08:00",
                     "TZD": "+01:00",
-                    "content": "<b>Reprise</b> des <b>cours</b> dans les salles <span class=\"integer\">005</span>, <span class=\"integer\">007</span>, <span class=\"integer\">005</span>, <span class=\"integer\">101</span>, <span class=\"integer\">102</span>, <span class=\"integer\">103</span>, <span class=\"integer\">201</span>  et <span class=\"integer\">005</span>"
+                    "content": "<b>Reprise</b> des <b>cours</b> au CREMI</span>"
                 },
                 {
                     "hour": "08:02",
