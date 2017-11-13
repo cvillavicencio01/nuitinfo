@@ -28,9 +28,9 @@ elif [ ${1} = "run" ]; then
     echo "Docker launch in progress"
     docker rm -f ndi
     if [ $# -eq 2 ]; then
-        docker run -p 8080:${2} --name ndi -d nuitinfo
+        docker run -p 8080:${2} --link mongo-ndi:mongo --name ndi -d nuitinfo
     else
-        docker run -p 8080:8080 --name ndi -d nuitinfo
+        docker run -p 8080:8080 --link mongo-ndi:mongo --name ndi -d nuitinfo
     fi
 
 else

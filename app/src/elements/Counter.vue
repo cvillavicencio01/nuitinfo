@@ -29,8 +29,8 @@
     export default {
         data() {
             return {
-                startNDI: new Date(2016, 11, 1, 16, 40, 0, 0),
-                endNDI: new Date(2016, 11, 2, 8, 0, 0, 0),
+                startNDI: new Date(2017, 11, 13, 18, 0, 0, 0),
+                endNDI: new Date(2017, 11, 30, 16, 0, 0, 0),
                 count: {
                     days: 0,
                     hours: 0,
