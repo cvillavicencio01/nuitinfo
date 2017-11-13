@@ -9,10 +9,11 @@ a#goHome:hover {
 header .content {
     max-width: 1200px;
     text-align: right;
-    margin: auto;
+    /*margin: auto;*/
     background-image: url('./assets/n2i2017_bannersite.png');
     background-repeat: no-repeat;
     background-position: 0 50%;
+    background-size: auto 100%;
 }
 
 header #goHome {
@@ -20,6 +21,8 @@ header #goHome {
     display: inline-block;
     height: 58px;
     width: 64px;
+    border:none;
+    background: transparent;
 }
 
 header .button {
