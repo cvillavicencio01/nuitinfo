@@ -1,9 +1,9 @@
 header {
-        /*background-color : rgba(0,0,0,0.5);*/
+        /*background-color : rgba(0,0,0,0.5);
         background-image: url('./assets/n2i2017_bannersite_mobile.png');
         background-repeat: no-repeat;
         background-position: 0 0;
-        background-size: 60px;
+        background-size: 60px;*/
         min-height: 60px;
 }
 
@@ -21,7 +21,11 @@ header #goHome {
         float: left;
         display: inline-block;
         height: 60px;
-        width: 64px;
+        width: 75%;
+        background-image: url('./assets/n2i2017_bannersite_mobile.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: auto 100%;
 }
 
 nav#menu {
