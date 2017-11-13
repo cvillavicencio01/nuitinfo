@@ -62,9 +62,9 @@
             }
         },
         mounted() {
-            var self = this;
-            var startNDITimestamp = this.startNDI.getTime();
-            var endNDITimestamp = this.endNDI.getTime();
+            let self = this;
+            let startNDITimestamp = this.startNDI.getTime();
+            let endNDITimestamp = this.endNDI.getTime();
 
             function a() {
                 let now = new Date();
