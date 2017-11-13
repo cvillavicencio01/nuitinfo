@@ -129,12 +129,12 @@
                 <input type="checkbox" id="hasMaterial" v-model="user.material.hasMaterial"/>
             </div>
 
-            <div class="checkbox-line">
+            <div class="checkbox-line" style="display:none">
                 <label for="isDesktop">Est-ce que tu apporteras <b>un ordinateur fixe</b> : </label>
                 <input type="checkbox" id="isDesktop" v-model="user.material.isDesktop"/>
             </div>
 
-            <div class="checkbox-line">
+            <div class="checkbox-line" style="display:none">
                 <label for="hasWiFi">Est ce que ton matériel est équipé du <b>WiFi</b> : </label>
                 <input type="checkbox" id="hasWiFi" v-model="user.material.hasWiFi"/>
             </div>
