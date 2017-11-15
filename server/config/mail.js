@@ -37,7 +37,7 @@ const subscribeMail = {
         '\r\n\r\n',
         'Vous pouvez d\'ores et déjà vous connecter sur le site pour trouver ou ',
         'créer une équipe.\r\n\r\n',
-        'Rendez-vous le 1er Décembre pour la plus belle des nuits ! :)\r\n\r\n',
+        'Rendez-vous le 7 Décembre pour la plus belle des nuits ! :)\r\n\r\n',
         'Loco, le robot mailer de la Nuit de l\'Info'
     ]
 };
