@@ -444,3 +444,18 @@ progress::-webkit-progress-value, progress::-moz-progress-value, progress::-o-pr
 .page {
     min-height: calc(86vh - 40px);
 }
+
+.sponsor_text {
+  max-width: 200px;
+  max-height: 50px;
+  margin-top: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.sponsor_img {
+  max-width: 200px;
+  max-height: 50px;
+  margin-top: 20px;
+  vertical-align: middle;
+}
