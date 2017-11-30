@@ -2,7 +2,7 @@
     <div>
         La nuit est en cours de développement !<br>
         Y'a un discord pour le support et pour le flood ou pour du vocal entre nous.
-        C'est ici : <a href="https://discord.gg/DcYur6f" target="_blank">https://discord.gg/DcYur6f</a>
+        C'est ici : <a href="https://discord.gg/AK9Unnh" target="_blank">https://discord.gg/AK9Unnh</a>
         <br/><br/>
         <h3>Site national</h3>
         <p>
