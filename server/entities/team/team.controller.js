@@ -158,8 +158,8 @@ module.exports = function (teamSchema) {
 
     teamSchema.statics.exCreate = function (req, res) {
       // To close registration, uncomment the two lines below
-      // Response.closeRegistrations(res);
-      // return false;
+      Response.closeRegistrations(res);
+      return false;
 
         if (!req.isLogged()) {
             return Response.notAllowed(res);

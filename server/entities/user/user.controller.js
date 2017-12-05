@@ -225,8 +225,8 @@ module.exports = function(userSchema) {
 
     userSchema.statics.exCreate = function(req, res) {
         // To close registration, uncomment the two lines below
-        //Response.closeRegistrations(res);
-        //return false;
+        Response.closeRegistrations(res);
+        return false;
 
         async.waterfall([
             (next) => checkParametersExistsForCreate(req, res, next),
