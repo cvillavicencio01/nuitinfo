@@ -38,7 +38,7 @@
                     <textarea id="logisticsRequirements" v-model="team.logisticsRequirements"></textarea>
                 </div>
                 <div>
-                    <i>Notez aussi si vous voulez proche de la salle d'une équipe que vous appréciez</i>
+                    <i>Notez aussi si vous voulez être proche de la salle d'une équipe que vous appréciez</i>
                 </div>
             </div>
 

@@ -2,11 +2,11 @@
     <div>
         La nuit est en cours de développement !<br>
         Y'a un discord pour le support et pour le flood ou pour du vocal entre nous.
-        C'est ici : <a href="https://discord.gg/AK9Unnh" target="_blank">https://discord.gg/AK9Unnh</a>
+        C'est ici : <a href="https://discord.gg/DcYur6f" target="_blank">https://discord.gg/DcYur6f</a>
         <br/><br/>
         <h3>Site national</h3>
         <p>
-            Le leader de la team a du recevoir <b>DEUX</b> emails sur la boite mail qu'il a renseigné sur ce site.<br/>
+            Le leader de la team a du recevoir <b>DEUX</b> emails sur la boite mail qu'il a renseignée sur ce site.<br/>
             Un des emails contient le couple login/password pour se connecter au
             <a href="http://www.nuitdelinfo.com/n2i/users/loginform" target="_blank">site national</a>.
             <br>
@@ -29,8 +29,8 @@
     export default {
         data() {
             return {
-                startNDI: new Date(2017, 11, 13, 18, 0, 0, 0),
-                endNDI: new Date(2017, 11, 30, 16, 0, 0, 0),
+                startNDI: new Date(2018, 12, 6, 16, 39, 0, 0),
+                endNDI: new Date(2018, 12, 7, 8, 5, 0, 0),
                 count: {
                     days: 0,
                     hours: 0,
@@ -65,34 +65,27 @@
             let self = this;
             let startNDITimestamp = this.startNDI.getTime();
             let endNDITimestamp = this.endNDI.getTime();
-
             function a() {
                 let now = new Date();
                 let nowTimestamp = now.getTime();
                 let diff = startNDITimestamp - nowTimestamp;
-
                 if (diff < 0) {
                     self.count.start = false;
                     diff = endNDITimestamp - nowTimestamp;
                 }
                 let ms = diff % 1000;
                 self.count.milliseconds = ms;
-
                 let ts = (diff - ms) / 1000;
                 let s = ts % 60;
                 self.count.seconds = s;
-
                 let tm = (ts - s) / 60;
                 let m = tm % 60;
                 self.count.minutes = m;
-
                 let th = (tm - m) / 60;
                 let h = th % 24;
                 self.count.hours = h;
-
                 self.count.days = (th - h) / 24;
             }
-
             a();
             window.setInterval(a, 999);
         }

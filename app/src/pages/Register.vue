@@ -179,6 +179,8 @@
                 <input type="checkbox" id="mailForRecruitment" v-model="user.mailForRecruitment"/>
             </div>
 
+            Nouveauté 2018 : nous t'invitons à nous envoyer un mail à labeli.recrutement@gmail.com avec ton C.V. en pièce-jointe. Celui-ci sera communiqué à nos partenaires, et ils te rappeleront peut-être pour un stage ou bien une alternance ! :)
+
 
             <div class="actions">
                 <router-link class="special" :to="{name: 'home'}">back();</router-link>

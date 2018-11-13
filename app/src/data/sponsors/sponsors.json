@@ -1,55 +1,67 @@
 {
-    "sponsors": [
+  "sponsors": [
+    {
+      "type": "Organisateurs",
+      "partners": [
         {
-            "type": "Organisateurs",
-            "partners": [
-                {
-                    "name": "Label[i]",
-                    "logo": "/src/style/assets/sponsors/labeli.png",
-                    "description": "Association d'Informatique pour les étudiants de l'Université de Bordeaux. Co-organise la Nuit depuis 4 ans avec l'UF Informatique.",
-                    "website": "http://labeli.org"
-                },
-                {
-                    "name": "Abeii",
-                    "logo": "",
-                    "description": "Association des étudiants en IUT Informatique",
-                    "website": ""
-                },
-                {
-                    "name": "UF Informatique",
-                    "logo": "",
-                    "description": "Unité de formation d'Informatique de l'Université de Bordeaux. Organise la Nuit de l'Info sur Bordeaux depuis 6 ans.",
-                    "website": "http://www.u-bordeaux.fr/Formation/Composantes-de-formation/College-Sciences-et-technologies/Unite-de-formation-d-informatique"
-                },
-                {
-                    "name": "IUT Informatique",
-                    "logo": "/src/style/assets/sponsors/iut.png",
-                    "description": "IUT d'Informatique de l'Universite de Bordeaux.",
-                    "website": "https://www.iut.u-bordeaux.fr/info/"
-                }
-            ]
+          "name": "Label[i]",
+          "logo": "/src/style/assets/sponsors/labeli.png",
+          "description": "Association d'Informatique pour les étudiants de l'Université de Bordeaux. Co-organise la Nuit depuis 6 ans avec l'UF Informatique.",
+          "website": "http://labeli.org"
         },
         {
-            "type": "Partenaires institutionnels",
-            "partners": [
-                {
-                    "name": "CREMI",
-                    "logo": "/src/style/assets/sponsors/cremi.png",
-                    "description": "Centre de Ressources pour l'Enseignement des Mathématiques et de l'Informatique",
-                    "website": "http://www.emi.u-bordeaux.fr"
-                }
-            ]
+          "name": "Abeii",
+          "logo": "",
+          "description": "Association des étudiants en IUT Informatique",
+          "website": ""
         },
         {
-            "type": "Partenaires privés",
-            "partners": [
-                {
-                    "name": "OnePoint",
-                    "logo": "/src/style/assets/sponsors/onepointwhite.png",
-                    "description": "En moins de 15 ans, onepoint est devenu l’un des acteurs majeurs de la transformation numérique, qui compte 1800 collaborateurs.",
-                    "website": "https://www.groupeonepoint.com/emploi-carriere/offres-demplois/"
-                }
-            ]
+          "name": "UF Informatique",
+          "logo": "",
+          "description": "Unité de formation d'Informatique de l'Université de Bordeaux. Organise la Nuit de l'Info sur Bordeaux depuis 8 ans.",
+          "website": "http://www.u-bordeaux.fr/Formation/Composantes-de-formation/College-Sciences-et-technologies/Unite-de-formation-d-informatique"
+        },
+        {
+          "name": "IUT Informatique",
+          "logo": "/src/style/assets/sponsors/iut.png",
+          "description": "IUT d'Informatique de l'Universite de Bordeaux.",
+          "website": "https://www.iut.u-bordeaux.fr/info/"
         }
-    ]
+      ]
+    },
+    {
+      "type": "Partenaires institutionnels",
+      "partners": [
+        {
+          "name": "CREMI",
+          "logo": "/src/style/assets/sponsors/cremi.png",
+          "description": "Centre de Ressources pour l'Enseignement des Mathématiques et de l'Informatique",
+          "website": "http://www.emi.u-bordeaux.fr"
+        },
+        {
+          "name": "FSDIE",
+          "logo": "/src/style/assets/sponsors/fsdie.png",
+          "description": "Fonds de Solidarité et de Développement des Initiatives Étudiantes",
+          "website": "http://www.u-bordeaux.fr/Campus/Vie-associative/Projets-etudiants-FSDIE"
+        }
+      ]
+    },
+    {
+      "type": "Partenaires privés",
+      "partners": [
+        {
+          "name": "onepoint",
+          "logo": "/src/style/assets/sponsors/onepointwhite.png",
+          "description": "En moins de 15 ans, onepoint est devenu l’un des acteurs majeurs de la transformation numérique, qui compte 1850 collaborateurs.",
+          "website": "https://www.groupeonepoint.com/emploi-carriere/offres-demplois/"
+        },
+        {
+          "name": "OVH",
+          "logo": "/src/style/assets/sponsors/ovh.png",
+          "description": "Leader européen de l'hébergement web et du cloud.",
+          "website": "https://ovh.com/fr"
+        }
+      ]
+    }
+  ]
 }
