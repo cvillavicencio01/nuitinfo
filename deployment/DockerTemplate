@@ -30,7 +30,7 @@ RUN apt-get install gcc -y
 RUN npm install pm2 -g
 
 # Clone repo
-RUN cd /var/www && git clone https://github.com/t/nuitinfo.git
+RUN cd /var/www && git clone https://github.com/ArnaudGallardo/nuitinfo.git
 RUN cd /var/www/nuitinfo/ && npm i
 RUN cd /var/www/nuitinfo/app && npm i
 
