@@ -3,7 +3,7 @@
 /* Rename this file into local.env.js to add the configuration to server */
 
 module.exports = {
-    MONGO_HOST: process.env.MONGO_HOST || 'localhost',
+    MONGO_HOST: process.env.MONGO_HOST || 'mongo',
     MONGO_PORT: process.env.MONGO_PORT || 27017,
     MONGO_DB: process.env.MONGO_DB || 'nuitinfo',
     MONGO_USER: process.env.MONGO_USER,

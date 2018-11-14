@@ -2,3 +2,8 @@
 node_modules/
 local.env.js
 npm-debug.log
+/nuitinfo/app/node_modules/
+/nuitinfo/node_modules/
+/database/
+/nuitinfo/server/NDI_ERR.log
+/nuitinfo/server/NDI_OUT.log

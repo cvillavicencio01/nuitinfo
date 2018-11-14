@@ -1,9 +1,7 @@
 <template>
     <div id="home" class="responsive page">
 
-        <h1>Nuit de l'Info <span class="integer">2017</span> - Édition Bordelaise</h1>
-        <h4 style="color:orangered;margin-bottom: 30px;">Suite à un problème technique, l’ensemble des inscriptions et des équipes ont été réinitialisées. Il est donc nécessaire de se réinscrire pour valider à nouveau votre inscription. Nous vous présentons nos excuses pour cette erreur.</h4>
-        <br/>
+        <h1>Nuit de l'Info <span class="integer">2018</span> - Édition Bordelaise</h1>
         <div class="presentation" v-for="part in paragraphs">
             <h2 class="title">{{ part.title }}</h2>
             <div class="paragraph">

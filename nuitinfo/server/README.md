@@ -20,7 +20,7 @@ When you want to logout, just remove the token from your application.
 
 All these routes are available from `/api/`.
 
-### [Authentication](/server/doc/auth.md#authentication)
+### [Authentication](/nuitinfo/serverfo/server/doc/auth.md#authentication)
 
 Route | Description | Authentication
 ----- | ----------- | --------------
@@ -28,7 +28,7 @@ Route | Description | Authentication
 **POST** /passwordRecovery | Get a recovery password mail | No
 **POST** /recovery/:token | Send a password change | No
 
-### [User](/server/doc/user.md#user)
+### [User](/nuitinfo/serverfo/server/doc/user.md#user)
 
 Route | Description | Authentication
 ----- | ----------- | --------------
@@ -38,7 +38,7 @@ Route | Description | Authentication
 **GET** /user | Get list of all users | No
 **GET** /user/:id | Get user with specific id | No
 
-### [Team](/server/doc/team.md#team)
+### [Team](/nuitinfo/serverfo/server/doc/team.md#team)
 
 Route | Description | Authentication
 ----- | ----------- | --------------
@@ -50,7 +50,7 @@ Route | Description | Authentication
 **POST** /team/kick | Kick a member | Yes
 **POST** /team/leave | Leave a team | Yes
 
-### [Application](/server/doc/application.md#application)
+### [Application](/nuitinfo/serverfo/server/doc/application.md#application)
 
 Route | Description | Authentication
 ----- | ----------- | --------------
@@ -62,14 +62,14 @@ Route | Description | Authentication
 **GET** /application/forUser/waiting | Get waiting applications for a user | Yes
 **GET** /application/forTeam | Get applications for a team | Yes
 
-### [Institution](/server/doc/institution.md#institution)
+### [Institution](/nuitinfo/serverfo/server/doc/institution.md#institution)
 
 Route | Description | Authentication
 ----- | ----------- | --------------
 **POST** /institution | Add a new institution | No
 **GET** /institution | Get institutions | No
 
-### [Statistics](/server/doc/statistics.md#statistics)
+### [Statistics](/nuitinfo/serverfo/server/doc/statistics.md#statistics)
 
 Route | Description | Authentication
 ----- | ----------- | --------------

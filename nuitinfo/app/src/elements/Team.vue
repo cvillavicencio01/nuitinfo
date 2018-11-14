@@ -122,7 +122,7 @@
 
 <script>
     import user from '../stores/UserStore';
-    import Separator from '../elements/Separator.vue';
+    import Separator from './Separator.vue';
     export default {
         components: {Separator},
         data() {

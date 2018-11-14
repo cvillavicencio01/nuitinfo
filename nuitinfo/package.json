@@ -8,10 +8,6 @@
     "serve": "pm2 start production.json --no-daemon",
     "build": "cd app && npm i && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/asso-labeli/nuitinfo.git"
-  },
   "keywords": [
     "nuitinfo"
   ],
@@ -29,7 +25,7 @@
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "jwt-simple": "^0.5.0",
-    "mongoose": "^4.6.3",
+    "mongoose": "^5.3.12",
     "nodemailer": "^2.6.4",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",

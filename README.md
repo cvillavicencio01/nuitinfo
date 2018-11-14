@@ -2,4 +2,4 @@
 
 This is the website for the Nuit de l'Info Edition Bordelaise.
 
-If you want informations on the server, go [here](server/README.md#server).
+If you want informations on the server, go [here](nuitinfo/server/README.md#server).
