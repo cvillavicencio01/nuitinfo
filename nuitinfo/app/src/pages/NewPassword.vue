@@ -4,11 +4,11 @@
         <form v-on:submit.prevent="changePassword">
             <div>
                 <label for="password">Nouveau mot de passe:</label>
-                <input type="password" id="password" v-model="password"/>
+                <input type="password" id="password" v-model="password" autocomplete="new-password"/>
             </div>
             <div>
                 <label for="checkPassword">Vérification :</label>
-                <input type="password" id="checkPassword" v-model="checkPassword"/>
+                <input type="password" id="checkPassword" v-model="checkPassword" autocomplete="new-password"/>
             </div>
 
             <div class="actions">

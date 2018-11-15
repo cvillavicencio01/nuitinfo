@@ -8,7 +8,7 @@
                     <label for="email"><span class="special">Adresse e-mail :</span></label>
                 </div>
                 <div class="contentWrapper">
-                    <input id="email" type="email" v-model="user.email" required="required"/>
+                    <input id="email" type="email" v-model="user.email" required="required" autocomplete="username"/>
                 </div>
             </div>
 
@@ -17,7 +17,7 @@
                     <label for="password"><span class="special">Mot de passe :</span></label>
                 </div>
                 <div class="contentWrapper">
-                    <input id="password" type="password" v-model="user.password" required="required"/>
+                    <input id="password" type="password" v-model="user.password" required="required" autocomplete="new-password"/>
                 </div>
             </div>
 

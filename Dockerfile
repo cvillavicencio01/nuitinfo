@@ -50,4 +50,6 @@ ENV WEBSERVER_URL http://localhost:8080
 ### YOU HAVE TO CHANGE THE SECRET
 ENV BCRYPT_SALT_ROUNDS 10
 
-CMD cd /var/www && npm i && npm run build && npm run serve
+WORKDIR /var/www
+
+CMD npm i && npm run build && npm run serve

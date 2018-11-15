@@ -4,12 +4,12 @@
         <form v-on:submit.prevent="login">
             <div>
                 <label for="login">Adresse e-mail :</label>
-                <input type="email" id="email" v-model="user.email"/>
+                <input type="email" id="email" v-model="user.email" autocomplete="username"/>
             </div>
 
             <div>
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" v-model="user.password"/>
+                <input type="password" id="password" v-model="user.password" autocomplete="current-password"/>
             </div>
 
             <div class="actions">
@@ -73,8 +73,8 @@ export default {
 <style>
 @media screen and (min-width: 700px) {
 	#login {
-        padding: 10px 10px 5vh;
-        max-width: 1200px;
+		padding: 10px 10px 5vh;
+		max-width: 1200px;
 		margin: 0 auto;
 	}
 }
