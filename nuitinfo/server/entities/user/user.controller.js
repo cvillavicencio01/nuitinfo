@@ -129,13 +129,8 @@ module.exports = function(userSchema) {
 
 					user.save(next);
 				},
-				(user, requests, next) => {
-					Mail.sendSubscribeMail(
-						{
-							to: user.email,
-						},
-						(err) => next(err, user),
-					);
+				(user, next) => {
+					Mail.sendSubscribeMail({ to: user.email }, (err) => next(err, user));
 				},
 			],
 			callback,
