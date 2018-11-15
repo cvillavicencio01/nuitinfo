@@ -19,67 +19,67 @@
 </template>
 
 <script>
-    import dataStore from '../stores/DataStore';
-    export default {
-        data () {
-            return {
-                sponsors: dataStore.get('organization.sponsors', [])
-            };
-        },
-        mounted () {
-            this.$http.get('/src/data/sponsors/sponsors.json').then((response) => {
-                response.json().then((data) => {
-                    this.sponsors = data.sponsors;
-                    dataStore.set('organization.sponsors', data.sponsors);
-                });
-            }, (response) => {
-            });
-        }
-    };
+import dataStore from '../stores/DataStore';
+export default {
+	data() {
+		return {
+			sponsors: dataStore.get('organization.sponsors', []),
+		};
+	},
+	mounted() {
+		this.$http.get('/src/data/sponsors/sponsors.json').then(
+			(response) => {
+				response.json().then((data) => {
+					this.sponsors = data.sponsors;
+					dataStore.set('organization.sponsors', data.sponsors);
+				});
+			},
+			(response) => {},
+		);
+	},
+};
 </script>
 
 <style scoped>
-    @media screen and (min-width: 700px) {
-        #sponsorship {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#sponsorship {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 
-    .sponsor {
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        justify-content: flex-start;
-        align-items: center;
-    }
+.sponsor {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: flex-start;
+	align-items: center;
+}
 
-    .sponsor .logo {
-        display: flex;
-        flex-direction: row;
-        width: 150px;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-    }
+.sponsor .logo {
+	display: flex;
+	flex-direction: row;
+	width: 150px;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
 
-    .sponsor img {
-        max-width: 100px;
-        max-height: 50px;
-    }
+.sponsor img {
+	max-width: 100px;
+	max-height: 50px;
+}
 
-    .categories {
-        margin-top: 2em;
-    }
+.categories {
+	margin-top: 2em;
+}
 
-    .sponsor-description {
-        margin-top: 1em;
-    }
+.sponsor-description {
+	margin-top: 1em;
+}
 
-    .sponsor-description:first-child {
-        margin-top: 0;
-    }
-
+.sponsor-description:first-child {
+	margin-top: 0;
+}
 </style>

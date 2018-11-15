@@ -29,42 +29,41 @@
 </template>
 
 <script>
-    import dataStore from '../stores/DataStore';
-    export default {
-        data () {
-            return {
-                faq: dataStore.get('help.faq', []),
-                skills: dataStore.get('help.skills', [])
-            };
-        },
-        mounted () {
-            this.$http.get('/src/data/help/skills.json').then((response) => {
-                response.json().then((data) => {
-                    this.skills = data;
-                    dataStore.set('help.skills', data.skills);
-                });
-            });
-            this.$http.get('/src/data/help/faq.json').then((response) => {
-                response.json().then((data) => {
-                    this.faq = data;
-                    dataStore.set('help.faq', data.faq);
-                });
-            });
-        }
-    };
+import dataStore from '../stores/DataStore';
+export default {
+	data() {
+		return {
+			faq: dataStore.get('help.faq', []),
+			skills: dataStore.get('help.skills', []),
+		};
+	},
+	mounted() {
+		this.$http.get('/src/data/help/skills.json').then((response) => {
+			response.json().then((data) => {
+				this.skills = data;
+				dataStore.set('help.skills', data.skills);
+			});
+		});
+		this.$http.get('/src/data/help/faq.json').then((response) => {
+			response.json().then((data) => {
+				this.faq = data;
+				dataStore.set('help.faq', data.faq);
+			});
+		});
+	},
+};
 </script>
 
 <style scoped>
-    @media screen and (min-width: 700px) {
-        #help {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#help {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 
-    h2 {
-        padding-top: 1em !important;
-    }
+h2 {
+	padding-top: 1em !important;
+}
 </style>

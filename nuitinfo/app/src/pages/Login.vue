@@ -22,53 +22,60 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    export default {
-        data () {
-            return {
-                user: {
-                    email: "",
-                    password: ""
-                }
-            };
-        },
-        mounted() {
-            if (user.getToken()) {
-                this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    response.json().then((message) => {
-                        user.setUser(message.data);
-                        this.$router.push({name: 'dashboard'});
-                    });
-                }, (response) => {
-                    console.warn('Erreur Login.vue /api/user/me');
-                });
-            }
-        },
-        methods: {
-            login() {
-                this.$http.post('/api/login', JSON.stringify(this.user)).then((response) => {
-                    response.json().then((message) => {
-                        user.setToken(message.data.token);
-                        this.$router.push({name: 'dashboard'});
-                    });
-                }, (error) => {
-                    console.warn('Erreur Login.vue /api/login');
-                    error.json().then((message) => {
-                        alert(message.message);
-                    });
-                });
-            }
-        }
-    };
+import user from '../stores/UserStore';
+export default {
+	data() {
+		return {
+			user: {
+				email: '',
+				password: '',
+			},
+		};
+	},
+	mounted() {
+		if (user.getToken()) {
+			this.$http
+				.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+				.then(
+					(response) => {
+						response.json().then((message) => {
+							user.setUser(message.data);
+							this.$router.push({ name: 'dashboard' });
+						});
+					},
+					(response) => {
+						console.warn('Erreur Login.vue /api/user/me');
+					},
+				);
+		}
+	},
+	methods: {
+		login() {
+			this.$http.post('/api/login', JSON.stringify(this.user)).then(
+				(response) => {
+					response.json().then((message) => {
+						user.setToken(message.data.token);
+						this.$router.push({ name: 'dashboard' });
+					});
+				},
+				(error) => {
+					console.warn('Erreur Login.vue /api/login');
+					error.json().then((message) => {
+						alert(message.message);
+					});
+				},
+			);
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #login {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#login {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>

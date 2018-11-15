@@ -121,110 +121,152 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    import Separator from './Separator.vue';
-    export default {
-        components: {Separator},
-        data() {
-            return {
-                hasTeam: false,
-                team: {
-                    members: {}
-                },
-                applications: [],
-                candidatures: [],
-                teamLeader: false
-            };
-        },
-        methods: {
-            wip: function () {
-                alert('Cette fonctionnalité est en cours de développement. Désolé pour la gêne occasionnée.');
-            },
-            nl2br: function (str) {
-                str = String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-                return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
-            },
-            accept: function (applicationID) {
-                this.$http.post('/api/application/accept', JSON.stringify({application: applicationID}), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    this.$router.go({
-                        path: this.$route,
-                        query: {
-                            t: +new Date()
-                        }
-                    });
-                });
-            },
-            refuse: function (applicationID) {
-                this.$http.post('/api/application/refuse', JSON.stringify({application: applicationID}), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    this.$router.go({
-                        path: this.$route,
-                        query: {
-                            t: +new Date()
-                        }
-                    });
-                });
-            },
-            kick: function (userID) {
-                this.$http.post('/api/team/kick', JSON.stringify({user: userID}), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    this.$router.go({
-                        path: this.$route,
-                        query: {
-                            t: +new Date()
-                        }
-                    });
-                });
-            },
-            leave: function (userID) {
-                this.$http.post('/api/team/leave', JSON.stringify({}), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    this.$router.go({
-                        path: this.$route,
-                        query: {
-                            t: +new Date()
-                        }
-                    });
-                });
-            }
-        },
-        mounted(){
-            this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response1) => {
-                response1.json().then((message1) => {
-                    user.setUser(message1.data);
-                    let hasTeam = message1.data.hasOwnProperty('team') && message1.data.team !== null;
-                    if (hasTeam) {
-                        this.teamLeader = message1.data.team.isLeader;
-                        this.$http.get('/api/team/' + message1.data.team._id).then((response2) => {
-                            response2.json().then((message2) => {
-                                this.team = message2.data;
-                                this.hasTeam = true;
-                            });
-                        });
-                        if (this.teamLeader) {
-                            this.$http.get('/api/application/forTeam', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response3) => {
-                                response3.json().then((message3) => {
-                                    this.applications = message3.data;
-                                })
-                            });
-                        }
-                    } else {
-                        this.$http.get('/api/application/forUser', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                            response.json().then((message) => {
-                                this.applications = message.data;
-                            })
-                        });
-                        this.$http.get('/api/application/forUser/waiting', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                            response.json().then((message) => {
-                                this.candidatures = message.data;
-                            })
-                        });
-                    }
-                });
-            }, (error) => {
-                console.warn('Erreur Team.vue /api/user/me');
+import user from '../stores/UserStore';
+import Separator from './Separator.vue';
+export default {
+	components: { Separator },
+	data() {
+		return {
+			hasTeam: false,
+			team: {
+				members: {},
+			},
+			applications: [],
+			candidatures: [],
+			teamLeader: false,
+		};
+	},
+	methods: {
+		wip: function() {
+			alert(
+				'Cette fonctionnalité est en cours de développement. Désolé pour la gêne occasionnée.',
+			);
+		},
+		nl2br: function(str) {
+			str = String(str)
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+			return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
+		},
+		accept: function(applicationID) {
+			this.$http
+				.post('/api/application/accept', JSON.stringify({ application: applicationID }), {
+					headers: { Authorization: 'JWT ' + user.getToken() },
+				})
+				.then((response) => {
+					this.$router.go({
+						path: this.$route,
+						query: {
+							t: +new Date(),
+						},
+					});
+				});
+		},
+		refuse: function(applicationID) {
+			this.$http
+				.post('/api/application/refuse', JSON.stringify({ application: applicationID }), {
+					headers: { Authorization: 'JWT ' + user.getToken() },
+				})
+				.then((response) => {
+					this.$router.go({
+						path: this.$route,
+						query: {
+							t: +new Date(),
+						},
+					});
+				});
+		},
+		kick: function(userID) {
+			this.$http
+				.post('/api/team/kick', JSON.stringify({ user: userID }), {
+					headers: { Authorization: 'JWT ' + user.getToken() },
+				})
+				.then((response) => {
+					this.$router.go({
+						path: this.$route,
+						query: {
+							t: +new Date(),
+						},
+					});
+				});
+		},
+		leave: function(userID) {
+			this.$http
+				.post('/api/team/leave', JSON.stringify({}), {
+					headers: { Authorization: 'JWT ' + user.getToken() },
+				})
+				.then((response) => {
+					this.$router.go({
+						path: this.$route,
+						query: {
+							t: +new Date(),
+						},
+					});
+				});
+		},
+	},
+	mounted() {
+		this.$http
+			.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+			.then(
+				(response1) => {
+					response1.json().then((message1) => {
+						user.setUser(message1.data);
+						let hasTeam =
+							message1.data.hasOwnProperty('team') && message1.data.team !== null;
+						if (hasTeam) {
+							this.teamLeader = message1.data.team.isLeader;
+							this.$http
+								.get('/api/team/' + message1.data.team._id)
+								.then((response2) => {
+									response2.json().then((message2) => {
+										this.team = message2.data;
+										this.hasTeam = true;
+									});
+								});
+							if (this.teamLeader) {
+								this.$http
+									.get('/api/application/forTeam', {
+										headers: { Authorization: 'JWT ' + user.getToken() },
+									})
+									.then((response3) => {
+										response3.json().then((message3) => {
+											this.applications = message3.data;
+										});
+									});
+							}
+						} else {
+							this.$http
+								.get('/api/application/forUser', {
+									headers: { Authorization: 'JWT ' + user.getToken() },
+								})
+								.then((response) => {
+									response.json().then((message) => {
+										this.applications = message.data;
+									});
+								});
+							this.$http
+								.get('/api/application/forUser/waiting', {
+									headers: { Authorization: 'JWT ' + user.getToken() },
+								})
+								.then((response) => {
+									response.json().then((message) => {
+										this.candidatures = message.data;
+									});
+								});
+						}
+					});
+				},
+				(error) => {
+					console.warn('Erreur Team.vue /api/user/me');
 
-                error.json().then((message) => {
-                    console.warn(message);
-                });
-            });
-        }
-    }
+					error.json().then((message) => {
+						console.warn(message);
+					});
+				},
+			);
+	},
+};
 </script>

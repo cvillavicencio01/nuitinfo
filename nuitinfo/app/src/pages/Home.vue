@@ -68,66 +68,71 @@
 </template>
 
 <script>
-    import dataStore from '../stores/DataStore';
-    export default {
-        data () {
-            return {
-                title: dataStore.get('home.title', "Planning de la Nuit"),
-                paragraphs: dataStore.get('home.paragraphs', []),
-                days: dataStore.get('home.days', []),
-                users: dataStore.get('home.users', 0),
-                teams: dataStore.get('home.teams', 0)
-            };
-        },
-        mounted () {
+import dataStore from '../stores/DataStore';
+export default {
+	data() {
+		return {
+			title: dataStore.get('home.title', 'Planning de la Nuit'),
+			paragraphs: dataStore.get('home.paragraphs', []),
+			days: dataStore.get('home.days', []),
+			users: dataStore.get('home.users', 0),
+			teams: dataStore.get('home.teams', 0),
+		};
+	},
+	mounted() {
+		this.$http.get('/src/data/home/schedule.json').then((response) => {
+			response.json().then((data) => {
+				this.title = data.title;
+				dataStore.set('home.title', data.title);
+				this.days = data.days;
+				dataStore.set('home.days', data.days);
+			});
+		});
 
-            this.$http.get('/src/data/home/schedule.json').then((response) => {
-                response.json().then((data) => {
-                    this.title = data.title;
-                    dataStore.set('home.title', data.title);
-                    this.days = data.days;
-                    dataStore.set('home.days', data.days);
-                });
-            });
+		this.$http.get('/src/data/home/presentation.json').then((response) => {
+			response.json().then((data) => {
+				this.paragraphs = data.paragraphs;
+				dataStore.set('home.paragraphs', data.paragraphs);
+			});
+		});
 
-            this.$http.get('/src/data/home/presentation.json').then((response) => {
-                response.json().then((data) => {
-                    this.paragraphs = data.paragraphs;
-                    dataStore.set('home.paragraphs', data.paragraphs);
-                });
-            });
+		this.$http.get('/api/statistics/users').then(
+			(response) => {
+				response.json().then((statistics) => {
+					this.users = statistics.data.users;
+					dataStore.set('home.users', statistics.data.users);
+				});
+			},
+			(error) => {
+				this.users = 0;
+			},
+		);
 
-            this.$http.get('/api/statistics/users').then((response) => {
-                response.json().then((statistics) => {
-                    this.users = statistics.data.users;
-                    dataStore.set('home.users', statistics.data.users);
-                });
-            }, (error) => {
-                this.users = 0;
-            });
-
-            this.$http.get('/api/statistics/teams').then((response) => {
-                response.json().then((statistics) => {
-                    this.teams = statistics.data.teams;
-                    dataStore.set('home.teams', statistics.data.teams);
-                });
-            }, (error) => {
-                this.teams = 0;
-            });
-        }
-    };
+		this.$http.get('/api/statistics/teams').then(
+			(response) => {
+				response.json().then((statistics) => {
+					this.teams = statistics.data.teams;
+					dataStore.set('home.teams', statistics.data.teams);
+				});
+			},
+			(error) => {
+				this.teams = 0;
+			},
+		);
+	},
+};
 </script>
 
 <style scoped>
-    .paragraph {
-        margin-bottom: 2em;
-    }
+.paragraph {
+	margin-bottom: 2em;
+}
 
-    .day {
-        margin-bottom: 1em;
-    }
+.day {
+	margin-bottom: 1em;
+}
 
-    .register {
-        margin-bottom: 1.5em;
-    }
+.register {
+	margin-bottom: 1.5em;
+}
 </style>

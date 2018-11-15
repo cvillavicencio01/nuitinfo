@@ -57,81 +57,104 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    export default {
-        data(){
-            return {
-                title: "Création d'équipe",
-                team: {
-                    name: "",
-                    email: "",
-                    description: "",
-                    logisticsRequirements: "",
-                    openForApplications: true
-                }
-            }
-        },
-        computed: {
-            editionMode: function () {
-                return this.$route.path === '/team/edit' || this.$route.path === '/team/edit/';
-            }
-        },
-        mounted(){
-            this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                response.json().then((message) => {
-                    if (message.success === 1) {
-                        user.setUser(message.data);
-                    }
-                });
-            }, (response) => {
-                console.warn('Erreur de récupération des informations de profil');
-            });
-            if (this.editionMode) {
-                this.title = "Édition d'équipe";
-                this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    response.json().then((message) => {
-                        if (message.success === 1) {
-                            user.setUser(message.data);
-                            let me = message.data;
-                            if (me.hasOwnProperty('team') && me.team !== null) {
-                                if (me.team.isLeader) {
-                                    this.team = me.team;
-                                }
-                            }
-                        }
-                    });
-                }, (response) => {
-                    console.warn('Erreur de récupération des informations de profil');
-                });
-            }
-        },
-        methods: {
-            register() {
-                if (this.editionMode) {
-                    this.$http.put('/api/team', JSON.stringify(this.team), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        this.$router.push({name: 'dashboard'});
-                    }, (response) => {
-                        console.warn('Erreur de modification de l\'équipe');
-                    });
-                } else {
-                    this.$http.post('/api/team', JSON.stringify(this.team), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        this.$router.push({name: 'dashboard'});
-                    }, (response) => {
-                        console.warn('Erreur d\'ajout d\'une équipe');
-                    });
-                }
-            }
-        }
-    };
+import user from '../stores/UserStore';
+export default {
+	data() {
+		return {
+			title: "Création d'équipe",
+			team: {
+				name: '',
+				email: '',
+				description: '',
+				logisticsRequirements: '',
+				openForApplications: true,
+			},
+		};
+	},
+	computed: {
+		editionMode: function() {
+			return this.$route.path === '/team/edit' || this.$route.path === '/team/edit/';
+		},
+	},
+	mounted() {
+		this.$http
+			.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+			.then(
+				(response) => {
+					response.json().then((message) => {
+						if (message.success === 1) {
+							user.setUser(message.data);
+						}
+					});
+				},
+				(response) => {
+					console.warn('Erreur de récupération des informations de profil');
+				},
+			);
+		if (this.editionMode) {
+			this.title = "Édition d'équipe";
+			this.$http
+				.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+				.then(
+					(response) => {
+						response.json().then((message) => {
+							if (message.success === 1) {
+								user.setUser(message.data);
+								let me = message.data;
+								if (me.hasOwnProperty('team') && me.team !== null) {
+									if (me.team.isLeader) {
+										this.team = me.team;
+									}
+								}
+							}
+						});
+					},
+					(response) => {
+						console.warn('Erreur de récupération des informations de profil');
+					},
+				);
+		}
+	},
+	methods: {
+		register() {
+			if (this.editionMode) {
+				this.$http
+					.put('/api/team', JSON.stringify(this.team), {
+						headers: { Authorization: 'JWT ' + user.getToken() },
+					})
+					.then(
+						(response) => {
+							this.$router.push({ name: 'dashboard' });
+						},
+						(response) => {
+							console.warn("Erreur de modification de l'équipe");
+						},
+					);
+			} else {
+				this.$http
+					.post('/api/team', JSON.stringify(this.team), {
+						headers: { Authorization: 'JWT ' + user.getToken() },
+					})
+					.then(
+						(response) => {
+							this.$router.push({ name: 'dashboard' });
+						},
+						(response) => {
+							console.warn("Erreur d'ajout d'une équipe");
+						},
+					);
+			}
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #createTeam {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#cre    ateTeam {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>

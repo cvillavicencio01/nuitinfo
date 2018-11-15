@@ -26,68 +26,68 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                startNDI: new Date(2018, 12, 6, 16, 39, 0, 0),
-                endNDI: new Date(2018, 12, 7, 8, 5, 0, 0),
-                count: {
-                    days: 0,
-                    hours: 0,
-                    minutes: 0,
-                    seconds: 0,
-                    milliseconds: 0,
-                    start: true
-                }
-            };
-        },
-        computed: {
-            getDays: function () {
-                return this.count.days;
-            },
-            getHours: function () {
-                return this.count.hours;
-            },
-            getMinutes: function () {
-                return this.count.minutes;
-            },
-            getSeconds: function () {
-                return this.count.seconds;
-            },
-            getMilliseconds: function () {
-                return this.count.milliseconds;
-            },
-            isNightStarted: function () {
-                return this.start;
-            }
-        },
-        mounted() {
-            let self = this;
-            let startNDITimestamp = this.startNDI.getTime();
-            let endNDITimestamp = this.endNDI.getTime();
-            function a() {
-                let now = new Date();
-                let nowTimestamp = now.getTime();
-                let diff = startNDITimestamp - nowTimestamp;
-                if (diff < 0) {
-                    self.count.start = false;
-                    diff = endNDITimestamp - nowTimestamp;
-                }
-                let ms = diff % 1000;
-                self.count.milliseconds = ms;
-                let ts = (diff - ms) / 1000;
-                let s = ts % 60;
-                self.count.seconds = s;
-                let tm = (ts - s) / 60;
-                let m = tm % 60;
-                self.count.minutes = m;
-                let th = (tm - m) / 60;
-                let h = th % 24;
-                self.count.hours = h;
-                self.count.days = (th - h) / 24;
-            }
-            a();
-            window.setInterval(a, 999);
-        }
-    }
+export default {
+	data() {
+		return {
+			startNDI: new Date(2018, 12, 6, 16, 39, 0, 0),
+			endNDI: new Date(2018, 12, 7, 8, 5, 0, 0),
+			count: {
+				days: 0,
+				hours: 0,
+				minutes: 0,
+				seconds: 0,
+				milliseconds: 0,
+				start: true,
+			},
+		};
+	},
+	computed: {
+		getDays: function() {
+			return this.count.days;
+		},
+		getHours: function() {
+			return this.count.hours;
+		},
+		getMinutes: function() {
+			return this.count.minutes;
+		},
+		getSeconds: function() {
+			return this.count.seconds;
+		},
+		getMilliseconds: function() {
+			return this.count.milliseconds;
+		},
+		isNightStarted: function() {
+			return this.start;
+		},
+	},
+	mounted() {
+		let self = this;
+		let startNDITimestamp = this.startNDI.getTime();
+		let endNDITimestamp = this.endNDI.getTime();
+		function a() {
+			let now = new Date();
+			let nowTimestamp = now.getTime();
+			let diff = startNDITimestamp - nowTimestamp;
+			if (diff < 0) {
+				self.count.start = false;
+				diff = endNDITimestamp - nowTimestamp;
+			}
+			let ms = diff % 1000;
+			self.count.milliseconds = ms;
+			let ts = (diff - ms) / 1000;
+			let s = ts % 60;
+			self.count.seconds = s;
+			let tm = (ts - s) / 60;
+			let m = tm % 60;
+			self.count.minutes = m;
+			let th = (tm - m) / 60;
+			let h = th % 24;
+			self.count.hours = h;
+			self.count.days = (th - h) / 24;
+		}
+		a();
+		window.setInterval(a, 999);
+	},
+};
 </script>

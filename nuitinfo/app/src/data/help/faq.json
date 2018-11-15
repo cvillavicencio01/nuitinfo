@@ -1,71 +1,71 @@
 [
-  {
-    "title": "Inscriptions",
-    "parts": [
-      {
-        "title": "Je souhaite participer et créer une équipe",
-        "lines": [
-          "Il suffit de s'inscrire et une fois sur ton tableau de bord, il te sera possible de créer une équipe."
-        ]
-      },
-      {
-        "title": "Je souhaite participer mais je n'ai pas d'équipe",
-        "lines": [
-          "Il suffit de s'inscrire et tu pourras ensuite postuler auprès des équipes qui ont laissé leurs candidatures ouvertes."
-        ]
-      },
-      {
-        "title": "Quelle adresse e-mail pour mon équipe ?",
-        "lines": [
-          "Celle de ton choix, tu peux créer une adresse e-mail dédiée à l'équipe pour la durée de la Nuit.",
-          "Il est aussi possible de réutiliser l'adresse e-email utilisée lors de la création de ton compte participant"
-        ]
-      },
-      {
-        "title": "Clôture des inscriptions sur le site bordelais",
-        "lines": [
-          "Pour des raisons d'organisation, aucun participant ne pourra s'inscrire après le 30 novembre 2018 à 17h00.",
-          "Passé cette date, plus rien ne pourra être modifié."
-        ]
-      },
-      {
-        "title": "Inscription officielle sur le site de la Nuit de l'info",
-        "lines": ["Les organisateurs se chargent de tout le procédé."]
-      }
-    ]
-  },
-  {
-    "title": "Administration",
-    "parts": [
-      {
-        "title": "La communication avec mon équipe ou avec mes membres",
-        "lines": [
-          "Une fois que votre candidature est acceptée, l'adresse e-mail de votre équipe s'affiche sur votre profil.",
-          "Et l'administrateur d'une équipe peut voir les adresses e-mail des membres et des candidats de son équipe.",
-          "Nous vous conseillons de mettre en place une team Slack ou Mattermost pour vous permettre de communiquer du mieux possible"
-        ]
-      }
-    ]
-  },
-  {
-    "title": "Le site",
-    "parts": [
-      {
-        "title": "Son principe et son utilité",
-        "lines": [
-          "Le site permet aux étudiants bordelais de se regrouper pour former des équipes.",
-          "Il permet aussi une meilleure logistique en répondant dans la mesure du possible aux demandes faites par les équipes.",
-          "Ce site permet aussi de visualiser le nombre d'étudiants et d'organiser un buffet en conséquence."
-        ]
-      },
-      {
-        "title": "Usurpation d'identité",
-        "lines": [
-          "Un compte à votre nom a été créé et il usurpe votre identité pour d'obscures raisons.",
-          "Il vous suffit d'écrire un mail à nuitinfo@labeli.org avec votre adresse étudiante (ou avec une justification de votre identité)",
-          "Le compte en question sera effacé dans les plus brefs délais après réception du mail."
-        ]
-      }
-    ]
-  }
+	{
+		"title": "Inscriptions",
+		"parts": [
+			{
+				"title": "Je souhaite participer et créer une équipe",
+				"lines": [
+					"Il suffit de s'inscrire et une fois sur ton tableau de bord, il te sera possible de créer une équipe."
+				]
+			},
+			{
+				"title": "Je souhaite participer mais je n'ai pas d'équipe",
+				"lines": [
+					"Il suffit de s'inscrire et tu pourras ensuite postuler auprès des équipes qui ont laissé leurs candidatures ouvertes."
+				]
+			},
+			{
+				"title": "Quelle adresse e-mail pour mon équipe ?",
+				"lines": [
+					"Celle de ton choix, tu peux créer une adresse e-mail dédiée à l'équipe pour la durée de la Nuit.",
+					"Il est aussi possible de réutiliser l'adresse e-email utilisée lors de la création de ton compte participant"
+				]
+			},
+			{
+				"title": "Clôture des inscriptions sur le site bordelais",
+				"lines": [
+					"Pour des raisons d'organisation, aucun participant ne pourra s'inscrire après le 30 novembre 2018 à 17h00.",
+					"Passé cette date, plus rien ne pourra être modifié."
+				]
+			},
+			{
+				"title": "Inscription officielle sur le site de la Nuit de l'info",
+				"lines": ["Les organisateurs se chargent de tout le procédé."]
+			}
+		]
+	},
+	{
+		"title": "Administration",
+		"parts": [
+			{
+				"title": "La communication avec mon équipe ou avec mes membres",
+				"lines": [
+					"Une fois que votre candidature est acceptée, l'adresse e-mail de votre équipe s'affiche sur votre profil.",
+					"Et l'administrateur d'une équipe peut voir les adresses e-mail des membres et des candidats de son équipe.",
+					"Nous vous conseillons de mettre en place une team Slack ou Mattermost pour vous permettre de communiquer du mieux possible"
+				]
+			}
+		]
+	},
+	{
+		"title": "Le site",
+		"parts": [
+			{
+				"title": "Son principe et son utilité",
+				"lines": [
+					"Le site permet aux étudiants bordelais de se regrouper pour former des équipes.",
+					"Il permet aussi une meilleure logistique en répondant dans la mesure du possible aux demandes faites par les équipes.",
+					"Ce site permet aussi de visualiser le nombre d'étudiants et d'organiser un buffet en conséquence."
+				]
+			},
+			{
+				"title": "Usurpation d'identité",
+				"lines": [
+					"Un compte à votre nom a été créé et il usurpe votre identité pour d'obscures raisons.",
+					"Il vous suffit d'écrire un mail à nuitinfo@labeli.org avec votre adresse étudiante (ou avec une justification de votre identité)",
+					"Le compte en question sera effacé dans les plus brefs délais après réception du mail."
+				]
+			}
+		]
+	}
 ]

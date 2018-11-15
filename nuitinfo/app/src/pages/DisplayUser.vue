@@ -26,71 +26,81 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    export default {
-        data(){
-            return {
-                displayUser: false,
-                user: {},
-                displayApplication: false
-            };
+import user from '../stores/UserStore';
+export default {
+	data() {
+		return {
+			displayUser: false,
+			user: {},
+			displayApplication: false,
+		};
+	},
+	mounted() {
+		if (this.$route.params.hasOwnProperty('id')) {
+			let userID = this.$route.params.id;
+			this.$http.get('/api/user/' + userID).then((response) => {
+				response.json().then((message) => {
+					this.user = message.data;
+					this.displayUser = true;
+				});
+			});
 
-        },
-        mounted(){
-            if (this.$route.params.hasOwnProperty('id')) {
-                let userID = this.$route.params.id;
-                this.$http.get('/api/user/' + userID).then((response) => {
-                    response.json().then((message) => {
-                        this.user = message.data;
-                        this.displayUser = true;
-                    });
-                });
-
-                if (user.getToken()) {
-                    this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        if (response.status === 200) {
-                            response.json().then((message) => {
-                                user.setUser(message.data);
-                                this.displayApplication = message.data.hasOwnProperty('team') && message.data.team.isLeader;
-                            });
-                        } else {
-                            this.displayApplication = false;
-                        }
-                    });
-                } else {
-                    this.displayApplication = false;
-                }
-            }
-        },
-        methods: {
-            apply: function(userID) {
-                if (user.getToken()) {
-                    this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        if (response.status === 200) {
-                            response.json().then((message) => {
-                                user.setUser(message.data);
-                                this.$http.post('/api/application/fromTeam', JSON.stringify({
-                                    user: userID,
-                                    team: message.data.team._id
-                                }), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                                    console.info('Success');
-                                })
-                            });
-                        }
-                    });
-                }
-            }
-        }
-    };
+			if (user.getToken()) {
+				this.$http
+					.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+					.then((response) => {
+						if (response.status === 200) {
+							response.json().then((message) => {
+								user.setUser(message.data);
+								this.displayApplication =
+									message.data.hasOwnProperty('team') &&
+									message.data.team.isLeader;
+							});
+						} else {
+							this.displayApplication = false;
+						}
+					});
+			} else {
+				this.displayApplication = false;
+			}
+		}
+	},
+	methods: {
+		apply: function(userID) {
+			if (user.getToken()) {
+				this.$http
+					.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+					.then((response) => {
+						if (response.status === 200) {
+							response.json().then((message) => {
+								user.setUser(message.data);
+								this.$http
+									.post(
+										'/api/application/fromTeam',
+										JSON.stringify({
+											user: userID,
+											team: message.data.team._id,
+										}),
+										{ headers: { Authorization: 'JWT ' + user.getToken() } },
+									)
+									.then((response) => {
+										console.info('Success');
+									});
+							});
+						}
+					});
+			}
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #displayUser {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#displayUser {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>

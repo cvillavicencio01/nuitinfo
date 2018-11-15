@@ -44,8 +44,6 @@ function getMongoURI() {
     return uri + "?authSource=admin";
 }
 
-console.log(getMongoURI());
-
 mongoose.connect(
     getMongoURI(),
     {useNewUrlParser: true},
@@ -55,6 +53,7 @@ mongoose.connect(
         }
     }
 );
+mongoose.set('useCreateIndex', true);
 
 app.listen(8080, function () {
     console.log("Server listening on port 8080 !");

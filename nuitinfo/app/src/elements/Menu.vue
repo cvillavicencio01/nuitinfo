@@ -71,24 +71,24 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    export default {
-        data () {
-            return {
-                userState: user.state
-            };
-        },
-        computed: {
-            logged: function () {
-                return this.userState.logged;
-            }
-        }
-    };
+import user from '../stores/UserStore';
+export default {
+	data() {
+		return {
+			userState: user.state,
+		};
+	},
+	computed: {
+		logged: function() {
+			return this.userState.logged;
+		},
+	},
+};
 </script>
 
 
 <style scoped>
-    .content {
-        heigth: 58px;
-    }
+.content {
+	heigth: 58px;
+}
 </style>

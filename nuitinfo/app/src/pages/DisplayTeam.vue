@@ -51,78 +51,94 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    import * as tools from '../libraries/tools';
-    export default {
-        data(){
-            return {
-                displayTeam: false,
-                team: {},
-                displayApplication: false
-            };
-        },
-        mounted(){
-            if (this.$route.params.hasOwnProperty('id')) {
-                let userID = this.$route.params.id;
-                this.$http.get('/api/team/' + userID).then((response) => {
-                    response.json().then((message) => {
-                        this.team = message.data;
-                        this.displayTeam = true;
-                    });
-                });
+import user from '../stores/UserStore';
+import * as tools from '../libraries/tools';
+export default {
+	data() {
+		return {
+			displayTeam: false,
+			team: {},
+			displayApplication: false,
+		};
+	},
+	mounted() {
+		if (this.$route.params.hasOwnProperty('id')) {
+			let userID = this.$route.params.id;
+			this.$http.get('/api/team/' + userID).then((response) => {
+				response.json().then((message) => {
+					this.team = message.data;
+					this.displayTeam = true;
+				});
+			});
 
-                if (user.getToken()) {
-                    this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        if (response.status === 200) {
-                            response.json().then((message) => {
-                                user.setUser(message.data);
-                                this.displayApplication = !(message.data.hasOwnProperty('team') && message.data.team.isLeader);
-                            });
-                        } else {
-                            this.displayApplication = false;
-                        }
-                    });
-                } else {
-                    this.displayApplication = false;
-                }
-            }
-        },
-        methods: {
-            isEmpty: function (o) {
-                return tools.isEmpty(o);
-            },
-            nl2br: function (str) {
-                str = String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-                return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
-            },
-            apply: function (teamID) {
-                if (user.getToken()) {
-                    this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                        if (response.status === 200) {
-                            response.json().then((message) => {
-                                user.setUser(message.data);
-                                this.$http.post('/api/application/fromUser', JSON.stringify({
-                                    user: user.getID(),
-                                    team: teamID
-                                }), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                                    this.$router.push({name: 'dashboard'})
-                                })
-                            });
-                        }
-                    });
-                }
-            }
-        }
-    };
+			if (user.getToken()) {
+				this.$http
+					.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+					.then((response) => {
+						if (response.status === 200) {
+							response.json().then((message) => {
+								user.setUser(message.data);
+								this.displayApplication = !(
+									message.data.hasOwnProperty('team') &&
+									message.data.team.isLeader
+								);
+							});
+						} else {
+							this.displayApplication = false;
+						}
+					});
+			} else {
+				this.displayApplication = false;
+			}
+		}
+	},
+	methods: {
+		isEmpty: function(o) {
+			return tools.isEmpty(o);
+		},
+		nl2br: function(str) {
+			str = String(str)
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+			return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
+		},
+		apply: function(teamID) {
+			if (user.getToken()) {
+				this.$http
+					.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+					.then((response) => {
+						if (response.status === 200) {
+							response.json().then((message) => {
+								user.setUser(message.data);
+								this.$http
+									.post(
+										'/api/application/fromUser',
+										JSON.stringify({
+											user: user.getID(),
+											team: teamID,
+										}),
+										{ headers: { Authorization: 'JWT ' + user.getToken() } },
+									)
+									.then((response) => {
+										this.$router.push({ name: 'dashboard' });
+									});
+							});
+						}
+					});
+			}
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #displayTeam {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#displayTeam {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>

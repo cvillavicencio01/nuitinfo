@@ -4,7 +4,7 @@ services:
   mongo:
     image: mongo
     restart: always
-      ports:
+    ports:
       - 27017:27017
     volumes:
       - ./database:/data/db
@@ -23,8 +23,7 @@ services:
       MONGO_HOST: mongo
       MONGO_PASSWORD: password
       MONGO_USER: username
-      # Must be changed and not saved on Github
-      JWT_SECRET: bJC2rlw0IW7XcsV5pWrFvcAK86y9JMD4L8JLB75BBmFJ00heK6yXtXMPDglcrZhl
+      JWT_SECRET: bJC2rlw0IW7XcsV5pWrFvcAK8vlzina1938BN8HmFJ00heK6yXtXMPDglcrZhl
       ### Email deliver
       # Supported services are available here: https://github.com/nodemailer/nodemailer-wellknown#supported-services
       ENV MAIL_SERVICE: custom

@@ -20,46 +20,50 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                password: "",
-                checkPassword: ""
-            };
-        },
-        methods: {
-            changePassword() {
-                if (this.password === this.checkPassword) {
-                    if (this.$route.params.hasOwnProperty('token')) {
-                        let token = this.$route.params.token;
-                        this.$http.post('/api/recovery/' + token, JSON.stringify({password: this.password})).then((response) => {
-                            response.json().then((message) => {
-                                alert('Votre mot de passe a été modifié.');
-                            });
-                        }, (error) => {
-                            console.warn('Erreur NewPassword.vue /api/recovery');
-                            error.json().then((message) => {
-                                alert(message.message);
-                            });
-                        });
-                    } else {
-                        alert('Token manquant');
-                    }
-                } else {
-                    alert('Les mots de passe ne sont pas identiques');
-                }
-            }
-        }
-    }
+export default {
+	data() {
+		return {
+			password: '',
+			checkPassword: '',
+		};
+	},
+	methods: {
+		changePassword() {
+			if (this.password === this.checkPassword) {
+				if (this.$route.params.hasOwnProperty('token')) {
+					let token = this.$route.params.token;
+					this.$http
+						.post('/api/recovery/' + token, JSON.stringify({ password: this.password }))
+						.then(
+							(response) => {
+								response.json().then((message) => {
+									alert('Votre mot de passe a été modifié.');
+								});
+							},
+							(error) => {
+								console.warn('Erreur NewPassword.vue /api/recovery');
+								error.json().then((message) => {
+									alert(message.message);
+								});
+							},
+						);
+				} else {
+					alert('Token manquant');
+				}
+			} else {
+				alert('Les mots de passe ne sont pas identiques');
+			}
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #newPassword {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#newPassword {
+        padding: 10px 10px 5vh;
+        max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>

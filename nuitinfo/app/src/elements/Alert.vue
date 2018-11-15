@@ -5,15 +5,15 @@
 </template>
 
 <script>
-    import alerts from '../stores/AlertStore';
-    export default {
-        data() {
-            return {};
-        },
-        computed: {
-            hasAlert(){
-                return alerts.state.alerts.length > 0;
-            }
-        }
-    }
+import alerts from '../stores/AlertStore';
+export default {
+	data() {
+		return {};
+	},
+	computed: {
+		hasAlert() {
+			return alerts.state.alerts.length > 0;
+		},
+	},
+};
 </script>

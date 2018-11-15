@@ -14,7 +14,7 @@
 
             <div class="formField" v-if="!editionMode">
                 <div class="labelWrapper">
-                    <label for="pass"><span class="special">Mot de passe :</span></label>
+                    <label for="password"><span class="special">Mot de passe :</span></label>
                 </div>
                 <div class="contentWrapper">
                     <input id="password" type="password" v-model="user.password" required="required"/>
@@ -192,134 +192,152 @@
 </template>
 
 <script>
-    import user from '../stores/UserStore';
-    export default {
-        data () {
-            return {
-                title: "Enregistrement",
-                cremiOwner: false,
-                newPathway: '',
-                newSchool: '',
-                newInstitution: '',
-                institutions: [],
-                user: {
-                    email: '',
-                    password: '',
-                    firstName: '',
-                    lastName: '',
-                    birthday: '',
-                    biography: '',
-                    school: {
-                        institution: '',
-                        studyYear: 1,
-                        pathway: 'Informatique'
-                    },
-                    material: {
-                        hasMaterial: true,
-                        isDesktop: false,
-                        hasWiFi: true
-                    },
-                    cremiAccount: {
-                        studentNumber: null,
-                        studentMail: "",
-                        charter: false
-                    },
-                    mailForRecruitment: true
-                }
-            };
-        },
-        computed: {
-            editionMode: function () {
-                return this.$route.path === '/user/edit' || this.$route.path === '/user/edit/';
-            }
-        },
-        mounted(){
-            this.$http.get('/api/institution').then((response) => {
-                if (response.status === 200) {
-                    response.json().then((message) => {
-                        this.institutions = message.data;
-                    });
-                }
-            });
+import user from '../stores/UserStore';
+export default {
+	data() {
+		return {
+			title: 'Enregistrement',
+			cremiOwner: false,
+			newPathway: '',
+			newSchool: '',
+			newInstitution: '',
+			institutions: [],
+			user: {
+				email: '',
+				password: '',
+				firstName: '',
+				lastName: '',
+				birthday: '',
+				biography: '',
+				school: {
+					institution: '',
+					studyYear: 1,
+					pathway: 'Informatique',
+				},
+				material: {
+					hasMaterial: true,
+					isDesktop: false,
+					hasWiFi: true,
+				},
+				cremiAccount: {
+					studentNumber: null,
+					studentMail: '',
+					charter: false,
+				},
+				mailForRecruitment: true,
+			},
+		};
+	},
+	computed: {
+		editionMode: function() {
+			return this.$route.path === '/user/edit' || this.$route.path === '/user/edit/';
+		},
+	},
+	mounted() {
+		this.$http.get('/api/institution').then((response) => {
+			if (response.status === 200) {
+				response.json().then((message) => {
+					this.institutions = message.data;
+				});
+			}
+		});
 
-            if (this.editionMode) {
-                this.title = "Édition de profil";
-                this.$http.get('/api/user/me', {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                    response.json().then((message) => {
-                        if (message.success === 1) {
-                            user.setUser(message.data);
-                            this.user = message.data;
-                            this.user.birthday = this.user.birthday.slice(0, 10);
-                            this.cremiOwner = !message.data.cremiAccount.needed;
-                        }
-                    });
-                }, (response) => {
-                    console.warn('Erreur de récupération des informations de profil');
-                });
-            }
-        },
-        methods: {
-            register() {
-                var self = this;
+		if (this.editionMode) {
+			this.title = 'Édition de profil';
+			this.$http
+				.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+				.then(
+					(response) => {
+						response.json().then((message) => {
+							if (message.success === 1) {
+								user.setUser(message.data);
+								this.user = message.data;
+								this.user.birthday = this.user.birthday.slice(0, 10);
+								this.cremiOwner = !message.data.cremiAccount.needed;
+							}
+						});
+					},
+					(response) => {
+						console.warn('Erreur de récupération des informations de profil');
+					},
+				);
+		}
+	},
+	methods: {
+		register() {
+			var self = this;
 
-                function send() {
-                    if (self.editionMode) {
-                        self.$http.put('/api/user', JSON.stringify(self.user), {headers: {Authorization: 'JWT ' + user.getToken()}}).then((response) => {
-                            self.$router.push({name: 'dashboard'});
-                        }, (response) => {
-                            console.warn('Erreur de modification');
-                        });
-                    } else {
-                        self.$http.post('/api/user', JSON.stringify(self.user)).then((response) => {
-                            self.$router.push({name: 'login'});
-                        }, (error) => {
-                            console.warn('Erreur d\'ajout d\'un utilisateur');
-                            error.json().then((message) => {
-                                alert(message.message);
-                            });
-                        });
-                    }
-                }
+			function send() {
+				if (self.editionMode) {
+					self.$http
+						.put('/api/user', JSON.stringify(self.user), {
+							headers: { Authorization: 'JWT ' + user.getToken() },
+						})
+						.then(
+							(response) => {
+								self.$router.push({ name: 'dashboard' });
+							},
+							(response) => {
+								console.warn('Erreur de modification');
+							},
+						);
+				} else {
+					self.$http.post('/api/user', JSON.stringify(self.user)).then(
+						(response) => {
+							self.$router.push({ name: 'login' });
+						},
+						(error) => {
+							console.warn("Erreur d'ajout d'un utilisateur");
+							error.json().then((message) => {
+								alert(message.message);
+							});
+						},
+					);
+				}
+			}
 
-                this.user.cremiAccount.needed = !this.cremiOwner;
-                if (this.user.school.pathway === '0') {
-                    this.user.school.pathway = this.newPathway;
-                }
-                if (this.user.school.institution === '0') {
-                    this.$http.post('/api/institution', JSON.stringify({name: this.newInstitution})).then((response) => {
-                        if (response.status === 200) {
-                            response.json().then((message) => {
-                                this.user.school.institution = message.data._id;
-                                send();
-                            });
-                        }
-                    }, (error) => {
-                        console.warn('Erreur d\'ajout d\'une institution');
-                        error.json().then((message) => {
-                            alert(message.message);
-                        });
-                    });
-                } else {
-                    send();
-                }
-
-            }
-        }
-    };
+			this.user.cremiAccount.needed = !this.cremiOwner;
+			if (this.user.school.pathway === '0') {
+				this.user.school.pathway = this.newPathway;
+			}
+			if (this.user.school.institution === '0') {
+				this.$http
+					.post('/api/institution', JSON.stringify({ name: this.newInstitution }))
+					.then(
+						(response) => {
+							if (response.status === 200) {
+								response.json().then((message) => {
+									this.user.school.institution = message.data._id;
+									send();
+								});
+							}
+						},
+						(error) => {
+							console.warn("Erreur d'ajout d'une institution");
+							error.json().then((message) => {
+								alert(message.message);
+							});
+						},
+					);
+			} else {
+				send();
+			}
+		},
+	},
+};
 </script>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #register {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#register {
+		padding: 10px 10px 5vh;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 
-    .checkbox-line {
-        display: flex;
-        flex-direction: row;
-    }
+.checkbox-line {
+	display: flex;
+	flex-direction: row;
+}
 </style>

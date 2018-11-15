@@ -5,12 +5,11 @@
 </template>
 
 <style>
-    @media screen and (min-width: 700px) {
-        #mapping {
-            padding: 10px;
-            padding-bottom: 5vh;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+@media screen and (min-width: 700px) {
+	#mapping {
+		padding: 10px 10px 5vh;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+}
 </style>
