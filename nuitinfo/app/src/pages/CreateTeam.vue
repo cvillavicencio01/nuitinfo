@@ -43,6 +43,11 @@
             </div>
 
             <div class="checkbox-line">
+                <label for="hasSeriousMotivation">Cette équipe est d'humeur sérieuse et cherche la win (ça nous aidera à vous répartir avec les autres équipes) : </label>
+                <input type="checkbox" id="hasSeriousMotivation" v-model="team.hasSeriousMotivation"/>
+            </div>
+
+            <div class="checkbox-line">
                 <label for="openForApplications">Cette équipe est ouverte aux candidatures : </label>
                 <input type="checkbox" id="openForApplications" v-model="team.openForApplications"/>
             </div>
@@ -68,6 +73,7 @@ export default {
 				description: '',
 				logisticsRequirements: '',
 				openForApplications: true,
+				hasSeriousMotivation: false,
 			},
 		};
 	},
@@ -151,9 +157,9 @@ export default {
 
 <style>
 @media screen and (min-width: 700px) {
-	#cre    ateTeam {
-        padding: 10px 10px 5vh;
-        max-width: 1200px;
+	#createTeam {
+		padding: 10px 10px 5vh;
+		max-width: 1200px;
 		margin: 0 auto;
 	}
 }
