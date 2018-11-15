@@ -100,7 +100,7 @@ const userRefusesApplicationMail = {
 };
 
 const teamAcceptsApplicationMail = {
-	subject: 'Candidature acceptée par une équipe',
+	subject: "Candidature acceptée par l'équipe <team>",
 	text: [
 		'Bonjour,\r\n\r\n',
 		"Votre candidature pour l'équipe <team> a été acceptée.\r\n",
@@ -111,11 +111,11 @@ const teamAcceptsApplicationMail = {
 };
 
 const teamRefusesApplicationMail = {
-	subject: 'Candidature acceptée par une équipe',
+	subject: "Candidature refusée par l'équipe <team>",
 	text: [
 		'Bonjour,\r\n\r\n',
 		"Votre candidature pour l'équipe <team> a été refusée.\r\n",
-		"Courage pour votre recherche d'équipe ! :S\r\n\r\n",
+		"Courage pour votre recherche d'équipe ! :muscle:\r\n\r\n",
 		"Loco, le robot mailer de la Nuit de l'Info",
 	],
 };
@@ -235,7 +235,7 @@ function sendTeamAcceptsApplicationMail(params, callback) {
 		{
 			from: from,
 			to: params.to,
-			subject: teamAcceptsApplicationMail.subject,
+			subject: teamAcceptsApplicationMail.subject.replace('<team>', params.team.name),
 			text: teamAcceptsApplicationMail.text.join('').replace('<team>', params.team.name),
 		},
 		(err) => {
@@ -251,7 +251,7 @@ function sendTeamRefusesApplicationMail(params, callback) {
 		{
 			from: from,
 			to: params.to,
-			subject: teamRefusesApplicationMail.subject,
+			subject: teamRefusesApplicationMail.subject.replace('<team>', params.team.name),
 			text: teamRefusesApplicationMail.text.join('').replace('<team>', params.team.name),
 		},
 		(err) => {
