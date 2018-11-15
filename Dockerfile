@@ -14,7 +14,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y nodejs gnupg python gcc make g++ curl
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
 # Install Git
