@@ -18,6 +18,12 @@
                     <a v-on:click.stop.prevent="apply(team._id)">Postuler dans cette équipe</a>
                 </div>
             </div>
+            
+            <h2 class="title">État d'esprit</h2>
+            <div class="applicationState">
+                <b v-if="team.hasSeriousMotivation">TRY HARD (sérieux)</b>
+                <b v-else>FUN (détente)</b>
+            </div>
 
             <h2 class="title">Composition</h2>
             <div class="leader"><span class="special">Leader :</span>
@@ -136,8 +142,8 @@ export default {
 <style>
 @media screen and (min-width: 700px) {
 	#displayTeam {
-        padding: 10px 10px 5vh;
-        max-width: 1200px;
+		padding: 10px 10px 5vh;
+		max-width: 1200px;
 		margin: 0 auto;
 	}
 }

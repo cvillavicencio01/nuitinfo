@@ -1,55 +1,51 @@
-'use strict';
+const bodyParser = require('body-parser'),
+	compression = require('compression'),
+	passport = require('passport'),
+	passportConfiguration = require('./passsport');
 
-let express = require('express');
+module.exports = function(app, config) {
+	app.use(
+		bodyParser.urlencoded({
+			extended: false,
+		}),
+	);
+	app.use(bodyParser.json());
 
-let favicon = require('serve-favicon'),
-    bodyParser = require('body-parser'),
-    compression = require('compression'),
-    passport = require('passport');
+	app.use(compression());
 
-let passportConfiguration = require('./passsport');
+	app.use(passport.initialize());
 
-module.exports = function (app, config) {
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-    app.use(bodyParser.json());
+	app.use(function(req, res, next) {
+		req.isLogged = () => passportConfiguration.isLogged(req);
 
-    app.use(compression());
+		passport.authenticate('jwt-custom', function(err, user) {
+			if (err) {
+				next();
+			}
 
-    app.use(passport.initialize());
+			if (user) {
+				req.user = user;
+			}
 
-    app.use(function(req, res, next) {
-        req.isLogged = () => passportConfiguration.isLogged(req);
+			next();
+		})(req, res, next);
+	});
 
-        passport.authenticate('jwt-custom', function(err, user) {
-            if (err){
-                next();
-            }
+	app.use(function(req, res, next) {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+		res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-            if (user){
-                req.user = user;
-            }
+		next();
+	});
 
-            next();
-        })(req, res, next);
-    });
+	app.use(function(req, res, next) {
+		if (req.originalUrl.indexOf('%') !== -1) {
+			res.status(400).send('Bad request');
+		} else {
+			next();
+		}
+	});
 
-    app.use(function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-        next();
-    });
-
-    app.use(function (req, res, next) {
-        if (req.originalUrl.indexOf('%') !== -1){
-            res.status(400).send('Bad request');
-        } else {
-            next();
-        }
-    });
-
-    require('./routes')(app, config);
+	require('./routes')(app, config);
 };

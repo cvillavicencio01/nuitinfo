@@ -24,15 +24,16 @@ services:
       MONGO_PASSWORD: password
       MONGO_USER: username
       JWT_SECRET: bJC2rlw0IW7XcsV5pWrFvcAK8vlzina1938BN8HmFJ00heK6yXtXMPDglcrZhl
-      ### Email deliver
-      # Supported services are available here: https://github.com/nodemailer/nodemailer-wellknown#supported-services
-      ENV MAIL_SERVICE: custom
-      ENV MAIL_ADDRESS: email@default.com
-      ENV MAIL_PASSWORD: password
-      ENV MAIL_HOST: smtp.default.com
-      ENV MAIL_PORT: 777
-      # 0 for false and 1 for true
-      ENV MAIL_SECURE: 1
+        ### Email deliver
+        # set MAIL_SERVICE to "custom" if you want to use SMTP otherwise use a service described here : https://nodemailer.com/smtp/well-known/
+        MAIL_SERVICE: Gmail
+        MAIL_ADDRESS: mail@example.org
+        MAIL_PASSWORD: password
+        # Only for SMTP
+        MAIL_HOST: smtp.gmail.com
+        MAIL_PORT: 465
+        # 0 for false and 1 for true
+        MAIL_SECURE: 1
     depends_on:
       - mongo
 
