@@ -13,9 +13,9 @@
                     <a v-on:click.stop.prevent="apply(team._id)">Postuler dans cette équipe</a>
                 </div>
                 <div>
-                    <span class="integer">{{team.members.list.length + 1}}</span>
+                    <span class="integer">{{team.members && team.members.list ? team.members.list.length : 0}}</span>
                     <span class="special">
-                        membre<span v-if="team.members.list.length > 0">s</span>
+                        membre<span v-if="team.members && team.members.list && team.members.list.length > 0">s</span>
                     </span>
                 </div>
                 <div v-if="!isEmpty(team.description)">
