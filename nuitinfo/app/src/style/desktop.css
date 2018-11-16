@@ -50,15 +50,6 @@ footer .content {
 	margin: auto;
 }
 
-footer .credits div:first-child {
-	margin-left: 25px;
-}
-
-footer .credits div {
-	margin-right: 25px;
-	display: inline;
-}
-
 .radioTitle,
 .selectTitle {
 	display: inline-block;
@@ -93,6 +84,7 @@ h1 {
 	width: 150px;
 	font-size: 1.4em;
 	vertical-align: middle;
+	padding-right: 1rem;
 }
 
 .register .button,

@@ -74,9 +74,9 @@ const router = new VueRouter({
 			name: 'mapping',
 		},
 		{
-			path: '/organization',
-			component: require('./pages/Organization.vue'),
-			name: 'organization',
+			path: '/sponsors',
+			component: require('./pages/Sponsors.vue'),
+			name: 'sponsors',
 		},
 		{
 			path: '/recovery',

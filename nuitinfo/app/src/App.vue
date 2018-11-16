@@ -16,7 +16,7 @@ export default {
 	components: { NuitInfoMenu, NuitInfoFooter },
 	data() {
 		return {
-			title: "Nuit de l'Info 2017 - Édition Bordelaise",
+			title: "Nuit de l'Info 2018 - Édition Bordelaise",
 		};
 	},
 	mounted() {

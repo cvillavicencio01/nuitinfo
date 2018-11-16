@@ -99,7 +99,7 @@ export default {
 		this.$http.get('/api/statistics/users').then(
 			(response) => {
 				response.json().then((statistics) => {
-					this.users = statistics.data.users;
+					this.users = statistics.data.users || 0;
 					dataStore.set('home.users', statistics.data.users);
 				});
 			},
@@ -111,7 +111,7 @@ export default {
 		this.$http.get('/api/statistics/teams').then(
 			(response) => {
 				response.json().then((statistics) => {
-					this.teams = statistics.data.teams;
+					this.teams = statistics.data.teams || 0;
 					dataStore.set('home.teams', statistics.data.teams);
 				});
 			},

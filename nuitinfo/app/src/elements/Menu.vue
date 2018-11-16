@@ -8,9 +8,9 @@
                         Aide
                     </div>
                 </router-link>
-                <router-link :to="{name: 'organization'}" exact>
+                <router-link :to="{name: 'sponsors'}" exact>
                     <div class="tab">
-                        Organisation
+                        Sponsors
                     </div>
                 </router-link>
                 <router-link :to="{name: 'challenges'}" exact>
@@ -47,7 +47,7 @@
                         <router-link :to="{name: 'help'}" exact>Aide</router-link>
                     </li>
                     <li>
-                        <router-link :to="{name: 'organization'}" exact>Organisation</router-link>
+                        <router-link :to="{name: 'sponsors'}" exact>Sponsors</router-link>
                     </li>
                     <li>
                         <router-link :to="{name: 'challenges'}" exact>Défis</router-link>
