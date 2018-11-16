@@ -5,9 +5,8 @@
                 Site d'inscription créé par l'association
                 <a href="http://www.labeli.org" target="_blank">Label[i]</a>
                 -
-                Support : <a href="https://twitter.com/NuitInfoUBX" target="_blank">@NuitInfoUBX</a>
-                / <a href="mailto:nuitinfo@labeli.org">nuitinfo@labeli.org</a>
-                - Sources : <a href="https://github.com/asso-labeli/nuitinfo" target="_blank">GitHub</a>
+                Support :  <a href="mailto:ndi.labeli@gmail.com">ndi.labeli@gmail.com</a>
+                - Sources : <a href="https://github.com/Zadrott/nuitinfo" target="_blank">GitHub</a>
             </div>
             <div class="credits">
                 <span class="sponsor_text">En partenariat avec :</span>

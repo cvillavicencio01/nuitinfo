@@ -10,11 +10,11 @@
 					"website": "http://labeli.org"
 				},
 				{
-					"name": "Abeii",
-					"logo": "",
+					"name": "ABEII",
+					"logo": "/src/style/assets/sponsors/abeii.png",
 					"description": "Association des étudiants en IUT Informatique",
 					"website": ""
-				},
+                },
 				{
 					"name": "UF Informatique",
 					"logo": "",
@@ -54,6 +54,18 @@
 					"logo": "/src/style/assets/sponsors/onepointwhite.png",
 					"description": "En moins de 15 ans, onepoint est devenu l’un des acteurs majeurs de la transformation numérique, qui compte 1850 collaborateurs.",
 					"website": "https://www.groupeonepoint.com/emploi-carriere/offres-demplois/"
+				},
+				{
+					"name": "Apside",
+					"logo": "/src/style/assets/sponsors/apside.png",
+					"description": "Entreprise de Services du Numérique, Apside accompagne les projets informatiques et scientifiques des grands groupes européens depuis 1976.",
+					"website": "https://carrieres.apside.com/"
+				},
+				{
+					"name": "KBDev",
+					"logo": "/src/style/assets/sponsors/kbdev.png",
+					"description": "KBDev est une entreprise spécialisée dans le développement Web et mobile.",
+					"website": "https://kbdev.io/"
 				},
 				{
 					"name": "OVH",
