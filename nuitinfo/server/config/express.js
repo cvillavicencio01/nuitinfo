@@ -9,7 +9,7 @@ module.exports = function(app, config) {
 			extended: false,
 		}),
 	);
-	app.use(bodyParser.json());
+	app.use(bodyParser.json({limit: '15mb'}));
 
 	app.use(compression());
 

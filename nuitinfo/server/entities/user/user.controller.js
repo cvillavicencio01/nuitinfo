@@ -28,6 +28,7 @@ const editableFields = {
 		studentNumber: true,
 		studentMail: true,
 	},
+	cv: true,
 };
 
 module.exports = function(userSchema) {
@@ -323,6 +324,14 @@ module.exports = function(userSchema) {
 				if (user.team) {
 					user.team.isLeader = user._id.equals(user.team.members.leader);
 				}
+
+				if (user.cv) {
+					user.alreadyUploadedCV = true;
+				} else {
+					user.alreadyUploadedCV = false;
+				}
+
+				delete user.cv;
 
 				Response.success(res, 'Logged user', user);
 			});

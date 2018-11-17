@@ -179,12 +179,31 @@
                 <input type="checkbox" id="mailForRecruitment" v-model="user.mailForRecruitment"/>
             </div>
 
-            Nouveauté 2018 : nous t'invitons à nous envoyer un mail à labeli.recrutement@gmail.com avec ton C.V. en pièce-jointe. Celui-ci sera communiqué à nos partenaires, et ils te rappeleront peut-être pour un stage ou bien une alternance ! :)
-
+            <div class="file-field">
+                <label for="curriculumVitae">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#bbbbbb"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <div>{{file.name ? `${file.name} (${fileConvertSize(file.size)})` : 'Aucun fichier sélectionné'}}</div>
+                    <div class="upload-description" v-if="user.alreadyUploadedCV">Tu as déjà mis en ligne ton CV, mais tu peux le changer si tu
+                        le
+                        souhaites.<br>
+                    </div>
+                    <div class="upload-description" v-else>Tu peux ajouter ton CV ici. Celui-ci sera communiqué à nos
+                        partenaires, et ils te rappeleront
+                        peut-être pour un stage ou bien une alternance ! :)<br>
+                        Uniquement en PDF.
+                    </div>
+                    <input id="curriculumVitae" type="file" @change="loadDataFromFile" accept="application/pdf"/>
+                </label>
+            </div>
 
             <div class="actions">
                 <router-link class="special" :to="{name: 'home'}">back();</router-link>
-                <input type="submit" class="special" value="submit(this);"/>
+                <input type="submit" v-bind:disabled="disabled" class="special" v-bind:value="submitButton"/>
             </div>
         </form>
 
@@ -192,152 +211,228 @@
 </template>
 
 <script>
-import user from '../stores/UserStore';
-export default {
-	data() {
-		return {
-			title: 'Enregistrement',
-			cremiOwner: false,
-			newPathway: '',
-			newSchool: '',
-			newInstitution: '',
-			institutions: [],
-			user: {
-				email: '',
-				password: '',
-				firstName: '',
-				lastName: '',
-				birthday: '',
-				biography: '',
-				school: {
-					institution: '',
-					studyYear: 1,
-					pathway: 'Informatique',
+	import user from '../stores/UserStore';
+
+	export default {
+		data() {
+			return {
+				title: 'Enregistrement',
+				submitButton: 'submit(this);',
+				disabled: false,
+				file: {
+					name: '',
+					size: '',
 				},
-				material: {
-					hasMaterial: true,
-					isDesktop: false,
-					hasWiFi: true,
+				cremiOwner: false,
+				newPathway: '',
+				newSchool: '',
+				newInstitution: '',
+				institutions: [],
+				user: {
+					email: '',
+					password: '',
+					firstName: '',
+					lastName: '',
+					birthday: '',
+					biography: '',
+					school: {
+						institution: '',
+						studyYear: 1,
+						pathway: 'Informatique',
+					},
+					material: {
+						hasMaterial: true,
+						isDesktop: false,
+						hasWiFi: true,
+					},
+					cremiAccount: {
+						studentNumber: null,
+						studentMail: '',
+						charter: false,
+					},
+					mailForRecruitment: true,
+					cv: '',
+					alreadyUploadedCV: false,
 				},
-				cremiAccount: {
-					studentNumber: null,
-					studentMail: '',
-					charter: false,
-				},
-				mailForRecruitment: true,
-			},
-		};
-	},
-	computed: {
-		editionMode: function() {
-			return this.$route.path === '/user/edit' || this.$route.path === '/user/edit/';
+			};
 		},
-	},
-	mounted() {
-		this.$http.get('/api/institution').then((response) => {
-			if (response.status === 200) {
-				response.json().then((message) => {
-					this.institutions = message.data;
-				});
+		computed: {
+			editionMode: function() {
+				return this.$route.path === '/user/edit' || this.$route.path === '/user/edit/';
+			},
+		},
+		mounted() {
+			this.$http.get('/api/institution').then((response) => {
+				if (response.status === 200) {
+					response.json().then((message) => {
+						this.institutions = message.data;
+					});
+				}
+			});
+
+			if (this.editionMode) {
+				this.title = 'Édition de profil';
+				this.$http
+					.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
+					.then(
+						(response) => {
+							response.json().then((message) => {
+								if (message.success === 1) {
+									user.setUser(message.data);
+									this.user = message.data;
+									this.user.birthday = this.user.birthday.slice(0, 10);
+									this.cremiOwner = !message.data.cremiAccount.needed;
+								}
+							});
+						},
+						(response) => {
+							console.warn('Erreur de récupération des informations de profil');
+						},
+					);
 			}
-		});
+		},
+		methods: {
+			fileConvertSize(aSize) {
+				aSize = Math.abs(parseInt(aSize, 10));
+				let def = [
+					[1, 'octets'],
+					[1024, 'ko'],
+					[1024 * 1024, 'Mo'],
+					[1024 * 1024 * 1024, 'Go'],
+					[1024 * 1024 * 1024 * 1024, 'To'],
+				];
+				for (let i = 0; i < def.length; i++) {
+					if (aSize < def[i][0])
+						return (aSize / def[i - 1][0]).toFixed(2) + ' ' + def[i - 1][1];
+				}
+			},
+			loadDataFromFile(ev) {
+				const file = ev.target.files[0];
+				const reader = new FileReader();
+				this.file = { name: file.name, size: file.size };
 
-		if (this.editionMode) {
-			this.title = 'Édition de profil';
-			this.$http
-				.get('/api/user/me', { headers: { Authorization: 'JWT ' + user.getToken() } })
-				.then(
-					(response) => {
-						response.json().then((message) => {
-							if (message.success === 1) {
-								user.setUser(message.data);
-								this.user = message.data;
-								this.user.birthday = this.user.birthday.slice(0, 10);
-								this.cremiOwner = !message.data.cremiAccount.needed;
-							}
-						});
-					},
-					(response) => {
-						console.warn('Erreur de récupération des informations de profil');
-					},
-				);
-		}
-	},
-	methods: {
-		register() {
-			var self = this;
+				reader.onload = (e) => {
+					if (reader.result) {
+						this.user.cv = reader.result;
+						console.log({ cv: this.user.cv });
+					}
+				};
+				reader.readAsDataURL(file);
+			},
+			openFile() {
+				window.open(this.cv);
+			},
+			register() {
+				const send = () => {
+					this.submitButton = 'sending(this)...';
+					this.disabled = true;
+					if (this.editionMode) {
+						this.$http
+							.put('/api/user', JSON.stringify(this.user), {
+								headers: { Authorization: 'JWT ' + user.getToken() },
+							})
+							.then(
+								(response) => {
+									this.$router.push({ name: 'dashboard' });
+								},
+								(error) => {
+									this.submitButton = 'submit(this);';
+									this.disabled = false;
+									console.warn('Erreur de modification');
+									error.json().then((message) => {
+										alert(message.message);
+									});
+								},
+							);
+					} else {
+						this.$http.post('/api/user', JSON.stringify(this.user)).then(
+							(response) => {
+								this.$router.push({ name: 'login' });
+							},
+							(error) => {
+								this.submitButton = 'submit(this);';
+								this.disabled = false;
+								console.warn('Erreur d\'ajout d\'un utilisateur');
+								error.json().then((message) => {
+									alert(message.message);
+								});
+							},
+						);
+					}
+				};
 
-			function send() {
-				if (self.editionMode) {
-					self.$http
-						.put('/api/user', JSON.stringify(self.user), {
-							headers: { Authorization: 'JWT ' + user.getToken() },
-						})
+				this.user.cremiAccount.needed = !this.cremiOwner;
+				if (this.user.school.pathway === '0') {
+					this.user.school.pathway = this.newPathway;
+				}
+				if (this.user.school.institution === '0') {
+					this.$http
+						.post('/api/institution', JSON.stringify({ name: this.newInstitution }))
 						.then(
 							(response) => {
-								self.$router.push({ name: 'dashboard' });
+								if (response.status === 200) {
+									response.json().then((message) => {
+										this.user.school.institution = message.data._id;
+										send();
+									});
+								}
 							},
-							(response) => {
-								console.warn('Erreur de modification');
+							(error) => {
+								console.warn('Erreur d\'ajout d\'une institution');
+								error.json().then((message) => {
+									alert(message.message);
+								});
 							},
 						);
 				} else {
-					self.$http.post('/api/user', JSON.stringify(self.user)).then(
-						(response) => {
-							self.$router.push({ name: 'login' });
-						},
-						(error) => {
-							console.warn("Erreur d'ajout d'un utilisateur");
-							error.json().then((message) => {
-								alert(message.message);
-							});
-						},
-					);
+					send();
 				}
-			}
-
-			this.user.cremiAccount.needed = !this.cremiOwner;
-			if (this.user.school.pathway === '0') {
-				this.user.school.pathway = this.newPathway;
-			}
-			if (this.user.school.institution === '0') {
-				this.$http
-					.post('/api/institution', JSON.stringify({ name: this.newInstitution }))
-					.then(
-						(response) => {
-							if (response.status === 200) {
-								response.json().then((message) => {
-									this.user.school.institution = message.data._id;
-									send();
-								});
-							}
-						},
-						(error) => {
-							console.warn("Erreur d'ajout d'une institution");
-							error.json().then((message) => {
-								alert(message.message);
-							});
-						},
-					);
-			} else {
-				send();
-			}
+			},
 		},
-	},
-};
+	};
 </script>
 
 <style>
-@media screen and (min-width: 700px) {
-	#register {
-		padding: 10px 10px 5vh;
-		max-width: 1200px;
-		margin: 0 auto;
-	}
-}
+    @media screen and (min-width: 700px) {
+        #register {
+            padding: 10px 10px 5vh;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
 
-.checkbox-line {
-	display: flex;
-	flex-direction: row;
-}
+    .checkbox-line {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .file-field {
+        margin-top: 8px;
+        border: solid 1px white;
+    }
+
+    .file-field label {
+        background: rgba(255, 255, 255, 0.1);
+        border: dashed 2px white;
+        border-radius: 5px;
+        padding: 40px;
+        margin: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .file-field * {
+        cursor: pointer;
+    }
+
+    .file-field input {
+        display: none;
+    }
+
+    .upload-description {
+        margin-top: 10px;
+        font-style: italic;
+        font-weight: lighter;
+    }
 </style>

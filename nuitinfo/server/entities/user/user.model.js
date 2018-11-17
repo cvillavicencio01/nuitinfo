@@ -29,6 +29,9 @@ let userSchema = new Schema({
 	biography: {
 		type: String,
 	},
+	cv: {
+		type: String,
+	},
 	birthday: {
 		type: Date,
 	},
