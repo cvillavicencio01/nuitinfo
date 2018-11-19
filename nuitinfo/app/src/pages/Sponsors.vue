@@ -19,15 +19,16 @@
 </template>
 
 <script>
-import dataStore from '../stores/DataStore';
-export default {
+	import dataStore from '../stores/DataStore';
+
+	export default {
 	data() {
 		return {
 			sponsors: dataStore.get('organization.sponsors', []),
 		};
 	},
 	mounted() {
-		this.$http.get('/src/data/sponsors/sponsors.json').then(
+		this.$http.get('/src/data/orga/orga.json').then(
 			(response) => {
 				response.json().then((data) => {
 					this.sponsors = data.sponsors;

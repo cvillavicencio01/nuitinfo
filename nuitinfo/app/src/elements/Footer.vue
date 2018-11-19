@@ -35,7 +35,7 @@
 			};
 		},
 		mounted() {
-			this.$http.get('/src/data/sponsors/sponsors.json').then(
+			this.$http.get('/src/data/orga/orga.json').then(
 				(response) => {
 					response.json().then((data) => {
 						const types = data.sponsors;
