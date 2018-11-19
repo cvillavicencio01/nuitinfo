@@ -214,7 +214,7 @@ module.exports = function(teamSchema) {
 					mongoose.model('Team').create(req.body, next);
 				},
 				// Add team to user
-				(team, entryCreated, next) =>
+				(team, next) =>
 					mongoose.model('User').changeTeam(
 						{
 							user: req.user,
@@ -407,7 +407,7 @@ module.exports = function(teamSchema) {
 								if (!leaderTeam) {
 									Response.resourceNotFound(res, 'team');
 								} else {
-									Response.notHaveRights(res, "Leader can't leave a team");
+									Response.notHaveRights(res, 'Leader can\'t leave a team');
 								}
 
 								next({ alreadySent: true });
